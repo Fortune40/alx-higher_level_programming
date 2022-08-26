@@ -1,29 +1,26 @@
-#!/usr/bin/python3
+!/usr/bin/python3
 if __name__ == "__main__":
+        import sys
+
+        nargs = len(sys.argv) - 1
+        if nargs != 3:
+                print("Usage: ./100-my_calculator.py <a> <operator> <b>")
+                sys.exit(1)
+
+        op = sys.argv[2]
+        if op != '+' and op != '-' and op != '*' and op != '/':
+                print("Unknown operator. Available operators: +, -, * and /")
+                sys.exit(1)
+
         from calculator_1 import add, sub, mul, div
-            import sys
-                if (len(sys.argv) - 1 != 3):
-                            print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-                                    exit(1)
-                else:
-                            nun = int(sys.argv[1])
-                                    nun2 = int(sys.argv[3])
-                                            if (sys.argv[2] == '+'):
-                                                            if (len(sys.argv) - 1 >= 3):
-                                                                                print("{} + {} = {}".format(nun, nun2, (add(nun, nun2))))
-                                                                                                exit(0)
-                                                                                                        if (sys.argv[2] == '-'):
-                                                                                                                        if (len(sys.argv) - 1 >= 3):
-                                                                                                                                            print("{} - {} = {}".format(nun, nun2, (sub(nun, nun2))))
-                                                                                                                                                            exit(0)
-                                                                                                                                                                    if (sys.argv[2] == '*'):
-                                                                                                                                                                                    if (len(sys.argv) - 1 >= 3):
-                                                                                                                                                                                                        print("{} * {} = {}".format(nun, nun2, (mul(nun, nun2))))
-                                                                                                                                                                                                                        exit(0)
-                                                                                                                                                                                                                                if (sys.argv[2] == '/'):
-                                                                                                                                                                                                                                                if (len(sys.argv) - 1 >= 3):
-                                                                                                                                                                                                                                                                    print("{} / {} = {}".format(nun, nun2, (div(nun, nun2))))
-                                                                                                                                                                                                                                                                                    exit(0)
-                                                                                                                                                                                                                                                                                            if (sys.argv[2] != '+', '-', '*', '/'):
-                                                                                                                                                                                                                                                                                                            print("Unknown operator. Available operators: +, -, * and /")
-                                                                                                                                                                                                                                                                                                                        exit(1)
+        a = int(sys.argv[1])
+        b = int(sys.argv[3])
+
+        if op == '+':
+                print("{} + {} = {}".format(a, b, add(a, b)))
+        elif op == '-':
+                print("{} - {} = {}".format(a, b, sub(a, b)))
+        elif op == '*':
+                print("{} * {} = {}".format(a, b, mul(a, b)))
+        else:
+                print("{} / {} = {}".format(a, b, div(a, b)))
