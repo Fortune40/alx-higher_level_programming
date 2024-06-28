@@ -1,19 +1,44 @@
 #!/usr/bin/python3
-# Displays all cities of a given state from the
-# states table of the database hbtn_0e_4_usa.
-# Safe from SQL injections.
-# Usage: ./5-filter_cities.py <mysql username> \
-#                             <mysql password> \
-#                             <database name> \
-#                             <state name searched>
-import sys
+""" script that takes in the name
+    of a state as an argument and
+    lists all cities of that state,
+    using the database hbtn_0e_4_usa """
+
+
+from sys import argv
 import MySQLdb
 
-if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    c = db.cursor()
-    c.execute("SELECT * FROM `cities` as `c` \
-                INNER JOIN `states` as `s` \
-                   ON `c`.`state_id` = `s`.`id` \
-                ORDER BY `c`.`id`")
-    print(", ".join([ct[2] for ct in c.fetchall() if ct[4] == sys.argv[4]]))
+if __name__ == '__main__':
+
+    my_user = argv[1]
+    my_pass = argv[2]
+    my_db = argv[3]
+    name_s = argv[4]
+    list_cities = []
+
+    db = MySQLdb.connect(
+        "localhost",
+        my_user,
+        my_pass,
+        my_db
+    )
+
+    cur = db.cursor()
+    database = cur.execute("SELECT cities.id, cities.name, states.name \
+                         FROM cities JOIN states ON cities.state_id = \
+                         states.id ORDER BY cities.id;")
+
+    for i in range(0, database):
+        results = cur.fetchone()
+        if results[2] == name_s:
+            list_cities.append(results[1])
+
+    for i in range(0, len(list_cities)):
+        print("{}".format(list_cities[i]), end=", "
+              if i < len(list_cities) - 1 else "\n")
+
+    if len(list_cities) == 0:
+        print()
+
+    cur.close()
+    db.close()

@@ -1,17 +1,32 @@
 #!/usr/bin/python3
-# Displays all values in the states table of the database hbtn_0e_0_usa
-# whose name matches that supplied as argument.
-# Usage: ./2-my_filter_states.py <mysql username> \
-#                                <mysql password> \
-#                                <database name> \
-#                                <state name searched>
-import sys
+""" script that takes in an argument
+    and displays all values in the states table
+    of hbtn_0e_0_usa where name matches the argument."""
+
+
+from sys import argv
 import MySQLdb
 
-if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    c = db.cursor()
-    c.execute("SELECT * \
-                 FROM `states` \
-                WHERE BINARY `name` = '{}'".format(sys.argv[4]))
-    [print(state) for state in c.fetchall()]
+if __name__ == '__main__':
+
+    my_user = argv[1]
+    my_pass = argv[2]
+    my_db = argv[3]
+    name_s = argv[4]
+
+    db = MySQLdb.connect(
+        "localhost",
+        my_user,
+        my_pass,
+        my_db
+    )
+
+    cur = db.cursor()
+    database = cur.execute("SELECT * FROM states ORDER BY states.id;")
+    for i in range(0, database):
+        results = cur.fetchone()
+        if results[1] == name_s:
+            print("{}".format(results))
+
+    cur.close()
+    db.close()
