@@ -5,8 +5,10 @@
 Welcome to the Python world!
 The first projects are more "C-oriented" - no tricks, no funky syntax - simple!
 If you've already played with Python, don't worry, fun things will come.
-You'll soon find that with Python (and the majority of higher level languages), there are ten  different ways to do the same thing. Some tasks will expect only one implementation, while oth er tasks will have multiple possible implementations.
-Like C, Python also has a linter / style guide like Betty, called PEP8, also now known as PyCode.
+You'll soon find that with Python (and the majority of higher-level languages),
+there are ten  different ways to do the same thing. Some tasks will expect only one implementation,
+while other tasks will have multiple possible implementations.
+Like C, Python also has a linter/style guide like Betty, called PEP8, also now known as PyCode.
 Enjoy!
 - Guillaume
 ```
@@ -86,7 +88,7 @@ Namespaces are one honking great idea -- let's do more of those!
 Pycodestyle is now the new standard of Python style code
 
 ## Tasks
-** 0. Run Python file:**
+**0. Run Python file:**
 Write a Shell script that runs a Python script.
 The Python file name will be saved in the environment variable $PYFILE
 
@@ -166,7 +168,8 @@ Write a function in C that checks if a singly linked list has a cycle in it.
 • Return: 0 if there is no cycle, 1 if there is a cycle Requirements:
 • Only these functions are allowed: write , printf , putchar , puts , malloc , free
 ```
-Solving a problem is already a big win! but finding the best and optimal way to solve it, it’s way better! Think about the most optimal / fastest way to do it.
+Solving a problem is already a big win! but finding the best and optimal way to solve it,
+it’s way better! Think about the most optimal/fastest way to do it.
 ```
 
 **11. Hello, write:**
